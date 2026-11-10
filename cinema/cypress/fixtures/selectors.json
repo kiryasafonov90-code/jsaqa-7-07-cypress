@@ -1,0 +1,24 @@
+{
+  "home": {
+    "pageTitle": "h1",
+    "dayNavigation": ".page-nav",
+    "movieCards": ".movie",
+    "movieTitle": ".movie__title",
+    "seanceLinks": ".movie-seances__time"
+  },
+  "admin": {
+    "email": "input[type='email']",
+    "password": "input[type='password']",
+    "submit": "button[type='submit'], input[type='submit']",
+    "hallTitles": ".conf-step__hall-title",
+    "hallRows": ".conf-step__row",
+    "hallSeats": ".conf-step__chair"
+  },
+  "booking": {
+    "seance": ".movie-seances__time",
+    "hall": ".buying-scheme",
+    "availableSeat": ".buying-scheme__chair_standart:not(.buying-scheme__chair_taken), .buying-scheme__chair_vip:not(.buying-scheme__chair_taken)",
+    "accept": ".acceptin-button",
+    "ticket": ".ticket"
+  }
+}

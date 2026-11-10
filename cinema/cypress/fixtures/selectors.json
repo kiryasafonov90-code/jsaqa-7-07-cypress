@@ -1,22 +1,25 @@
 {
   "home": {
-    "pageTitle": "h1",
-    "dayNavigation": ".page-nav",
+    "pageTitle": "h1.page-header__title",
+    "dayNavigation": ".page-nav__day",
     "movieCards": ".movie",
     "movieTitle": ".movie__title",
     "seanceLinks": ".movie-seances__time"
   },
   "admin": {
-    "email": "input[type='email']",
-    "password": "input[type='password']",
-    "submit": "button[type='submit'], input[type='submit']",
-    "hallTitles": ".conf-step__hall-title",
-    "hallRows": ".conf-step__row",
-    "hallSeats": ".conf-step__chair"
+    "email": "input[name='email']",
+    "password": "input[name='password']",
+    "submit": ".login__button",
+    "loginTitle": ".login__title",
+    "adminSubtitle": ".page-header__subtitle",
+    "hallTitles": "#hall-control .conf-step__list li"
   },
   "booking": {
-    "seance": ".movie-seances__time",
+    "hallSections": ".movie-seances__hall",
+    "hallTitle": ".movie-seances__hall-title",
+    "seance": ".movie-seances__time:not(.acceptin-button-disabled)",
     "hall": ".buying-scheme",
+    "hallName": ".buying__info-hall",
     "availableSeat": ".buying-scheme__chair_standart:not(.buying-scheme__chair_taken), .buying-scheme__chair_vip:not(.buying-scheme__chair_taken)",
     "accept": ".acceptin-button",
     "ticket": ".ticket"

@@ -1,0 +1,7 @@
+{
+  "name": "netology-7-07-cinema-tests",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": { "cy:open": "cypress open", "cy:run": "cypress run" },
+  "devDependencies": { "cypress": "^14.5.0" }
+}

@@ -2,6 +2,17 @@
   "name": "netology-7-07-cinema-tests",
   "version": "1.0.0",
   "private": true,
-  "scripts": { "cy:open": "cypress open", "cy:run": "cypress run" },
-  "devDependencies": { "cypress": "^14.5.0" }
+  "scripts": {
+    "cy:open": "cypress open",
+    "cy:run": "cypress run",
+    "cy:run:chrome": "cypress run --browser chrome",
+    "cy:run:firefox": "cypress run --browser firefox",
+    "cy:run:edge": "cypress run --browser edge",
+    "cy:run:all": "npm run cy:run:chrome && npm run cy:run:firefox && npm run cy:run:edge",
+    "cy:parallel": "node scripts/run-parallel.js",
+    "cy:cloud:parallel": "cypress run --record --parallel"
+  },
+  "devDependencies": {
+    "cypress": "^14.5.0"
+  }
 }

@@ -13,7 +13,7 @@ const runs = [
 ];
 
 const children = runs.map((run) => new Promise((resolve) => {
-  console.log(`\n[START] ${run.name}`);
+  console.log(\`\n[START] \${run.name}\`);
   const child = spawn(npx, run.args, {
     stdio: 'inherit',
     shell: process.platform === 'win32',
@@ -21,11 +21,11 @@ const children = runs.map((run) => new Promise((resolve) => {
   });
 
   child.on('error', (error) => {
-    console.error(`[ERROR] ${run.name}: ${error.message}`);
+    console.error(\`[ERROR] \${run.name}: \${error.message}\`);
     resolve(1);
   });
   child.on('close', (code) => {
-    console.log(`[FINISH] ${run.name}: exit ${code}`);
+    console.log(\`[FINISH] \${run.name}: exit \${code}\`);
     resolve(code ?? 1);
   });
 }));

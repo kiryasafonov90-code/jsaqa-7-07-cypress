@@ -13,7 +13,7 @@ const runs = [
 ];
 
 const children = runs.map((run) => new Promise((resolve) => {
-  console.log(`\\n[START] ${run.name}`);
+  console.log(`\n[START] ${run.name}`);
   const child = spawn(npx, run.args, {
     stdio: 'inherit',
     shell: process.platform === 'win32',
@@ -31,6 +31,5 @@ const children = runs.map((run) => new Promise((resolve) => {
 }));
 
 Promise.all(children).then((codes) => {
-  const failed = codes.some((code) => code !== 0);
-  process.exitCode = failed ? 1 : 0;
+  process.exitCode = codes.some((code) => code !== 0) ? 1 : 0;
 });

@@ -1,7 +1,11 @@
 describe('Дополнительная проверка главной страницы', () => {
-  it('показывает непустые названия дней в навигации', () => {
+  beforeEach(() => {
+    cy.fixture('selectors').as('selectors');
     cy.visit('/');
-    cy.get('.page-nav__day')
+  });
+
+  it('показывает непустые названия дней в навигации', function () {
+    cy.get(this.selectors.home.dayNavigation)
       .should('have.length.greaterThan', 0)
       .each(($day) => {
         expect($day.text().trim()).not.to.equal('');

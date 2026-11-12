@@ -14,7 +14,7 @@ describe('Авторизация администратора', () => {
       cy.get(this.selectors.admin.adminSubtitle)
         .should('be.visible')
         .and('contain.text', 'Администратор');
-      cy.get('#hall-control').should('be.visible');
+      cy.get(this.selectors.admin.hallControl).should('be.visible');
       cy.get(this.selectors.admin.hallTitles)
         .should('have.length.greaterThan', 0);
     });

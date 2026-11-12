@@ -7,8 +7,8 @@ pipeline {
   }
 
   parameters {
-    choice(name: 'RUN_MODE', choices: ['all', 'single', 'parallel'], description: 'Режим запуска тестов')
-    choice(name: 'BROWSER', choices: ['chrome', 'firefox', 'edge'], description: 'Браузер для режима single')
+    choice(name: 'RUN_MODE', choices: ['single', 'all', 'parallel'], description: 'Режим запуска тестов')
+    choice(name: 'BROWSER', choices: ['electron', 'chrome', 'firefox', 'edge'], description: 'Браузер для режима single')
   }
 
   stages {
@@ -18,13 +18,21 @@ pipeline {
         dir('cinema') {
           script {
             if (isUnix()) {
-              sh 'node --version'
-              sh 'npm --version'
-              sh 'npm install'
+              withEnv(["CYPRESS_CACHE_FOLDER=${env.WORKSPACE}/.cypress-cache"]) {
+                sh 'node --version'
+                sh 'npm --version'
+                sh 'npm install'
+                sh 'npx cypress install'
+                sh 'npx cypress verify'
+              }
             } else {
-              bat 'node --version'
-              bat 'npm --version'
-              bat 'npm install'
+              withEnv(["CYPRESS_CACHE_FOLDER=${env.WORKSPACE}\\.cypress-cache"]) {
+                bat 'node --version'
+                bat 'npm --version'
+                bat 'npm install'
+                bat 'npx cypress install'
+                bat 'npx cypress verify'
+              }
             }
           }
         }
@@ -39,12 +47,16 @@ pipeline {
               ? 'npm run cy:parallel'
               : (params.RUN_MODE == 'single'
                 ? "npm run cy:run:${params.BROWSER}"
-                : 'npm run cy:run:all')
+                : 'npm run cy:run')
 
             if (isUnix()) {
-              sh command
+              withEnv(["CYPRESS_CACHE_FOLDER=${env.WORKSPACE}/.cypress-cache"]) {
+                sh command
+              }
             } else {
-              bat command
+              withEnv(["CYPRESS_CACHE_FOLDER=${env.WORKSPACE}\\.cypress-cache"]) {
+                bat command
+              }
             }
           }
         }

@@ -8,7 +8,7 @@ describe('Главная страница кинотеатра', () => {
     cy.get(this.selectors.home.pageTitle)
       .should('be.visible')
       .and(($title) => {
-        expect($title.text().replace(/\\s/g, '')).to.match(/Идёмвкино/i);
+        expect($title.text().replace(/\s/g, '')).to.match(/Идёмвкино/i);
       });
     cy.get(this.selectors.home.dayNavigation).should('be.visible').and('have.length.greaterThan', 0);
   });

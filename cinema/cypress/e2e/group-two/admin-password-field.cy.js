@@ -1,7 +1,11 @@
 describe('Форма авторизации администратора', () => {
-  it('использует поле скрытого ввода для пароля', () => {
+  beforeEach(() => {
+    cy.fixture('selectors').as('selectors');
     cy.visit('/admin');
-    cy.get('input[name="password"]')
+  });
+
+  it('использует поле скрытого ввода для пароля', function () {
+    cy.get(this.selectors.admin.password)
       .should('be.visible')
       .and('have.attr', 'type', 'password');
   });

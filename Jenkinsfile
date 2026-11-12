@@ -8,7 +8,6 @@ pipeline {
 
   parameters {
     choice(name: 'RUN_MODE', choices: ['single', 'all', 'parallel'], description: 'Режим запуска тестов')
-    choice(name: 'BROWSER', choices: ['electron', 'chrome', 'firefox', 'edge'], description: 'Браузер для режима single')
   }
 
   stages {
@@ -46,7 +45,7 @@ pipeline {
             def command = params.RUN_MODE == 'parallel'
               ? 'npm run cy:parallel'
               : (params.RUN_MODE == 'single'
-                ? "npm run cy:run:${params.BROWSER}"
+                ? "npm run cy:run:electron"
                 : 'npm run cy:run')
 
             if (isUnix()) {

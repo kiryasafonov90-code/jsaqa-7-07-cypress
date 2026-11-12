@@ -16,27 +16,35 @@ pipeline {
       steps {
         checkout scm
         dir('cinema') {
-          sh 'node --version'
-          sh 'npm --version'
-          sh 'npm install'
+          script {
+            if (isUnix()) {
+              sh 'node --version'
+              sh 'npm --version'
+              sh 'npm install'
+            } else {
+              bat 'node --version'
+              bat 'npm --version'
+              bat 'npm install'
+            }
+          }
         }
       }
     }
 
     stage('Run tests') {
       steps {
-        script {
-          if (params.RUN_MODE == 'parallel') {
-            dir('cinema') {
-              sh 'npm run cy:parallel'
-            }
-          } else if (params.RUN_MODE == 'single') {
-            dir('cinema') {
-              sh "npm run cy:run:${params.BROWSER}"
-            }
-          } else {
-            dir('cinema') {
-              sh 'npm run cy:run:all'
+        dir('cinema') {
+          script {
+            def command = params.RUN_MODE == 'parallel'
+              ? 'npm run cy:parallel'
+              : (params.RUN_MODE == 'single'
+                ? "npm run cy:run:${params.BROWSER}"
+                : 'npm run cy:run:all')
+
+            if (isUnix()) {
+              sh command
+            } else {
+              bat command
             }
           }
         }

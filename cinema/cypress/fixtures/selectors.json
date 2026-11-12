@@ -12,6 +12,7 @@
     "submit": ".login__button",
     "loginTitle": ".login__title",
     "adminSubtitle": ".page-header__subtitle",
+    "hallControl": "#hall-control",
     "hallTitles": "#hall-control .conf-step__list li"
   },
   "booking": {
